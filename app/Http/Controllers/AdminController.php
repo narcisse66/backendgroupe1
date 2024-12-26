@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Inscription;
 use App\Models\Parents;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -30,7 +31,8 @@ class AdminController extends Controller
 
         $auth->name = $request->name;
         $auth->email = $request->email;
-        $auth->password = $request->password;
+
+        $auth->password = Hash::make($request->password);
 
         
         $auth->role = 'admin';
